@@ -3,8 +3,10 @@ package com.zilch.challengealicia.controller;
 
 import com.zilch.challengealicia.model.Card;
 import com.zilch.challengealicia.service.CardService;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,19 +23,24 @@ public class CardController {
         this.cardService = cardService;
     }
 
-    @PostMapping("/cards")
+    @ApiOperation(value = "Create a Zilch card since the name of the owner of the card")
+    @PostMapping(path = "/cards", consumes = {"application/json"})
     public ResponseEntity<Card> createCard(
-            @ApiParam("The name of the person that want a new card") @RequestBody String name) {
+            @ApiParam("Json with field name of the person that want a new card") @RequestBody Card card) {
 
-        Card card = cardService.generateCard(name);
-        return ResponseEntity.ok(card);
+        Card cardGen = cardService.generateCard(card.getName());
+        return ResponseEntity.status(HttpStatus.CREATED).header("ContentType", "application/json").body(cardGen);
+        //return cardGen;
     }
+
+    @ApiOperation(value = "Listing all the card in the database")
     @GetMapping("/cards")
-    public ResponseEntity<List<Card>> findCards() {
+    public List<Card> findCards() {
 
-        List<Card> cards = cardService.findAllCards();
-        return ResponseEntity.ok(cards);
+        return cardService.findAllCards();
     }
+
+    @ApiOperation(value = "Retrieve a card by id card")
     @GetMapping("/cards/{id}")
     public ResponseEntity<Card> findCard(@ApiParam("Id of the card that we want to find") @PathVariable(required = true) Integer id) {
 
