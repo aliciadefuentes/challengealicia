@@ -29,12 +29,12 @@ public class Card {
     @ApiModelProperty("Number card of 16 digit")
     private String number;
     @NotNull
-    @Min(value = 1, message= CardValidationErrorMessages.IT_IS_NOT_A_VALID_MONTH)
+    @Min(value = 1, message = CardValidationErrorMessages.IT_IS_NOT_A_VALID_MONTH)
     @Max(value = 12, message = CardValidationErrorMessages.IT_IS_NOT_A_VALID_MONTH)
     @ApiModelProperty("Expire month")
     private int expireMonth;
     @NotNull
-    @Min(value =21, message= CardValidationErrorMessages.IT_IS_NOT_A_VALID_YEAR)
+    @Min(value = 21, message = CardValidationErrorMessages.IT_IS_NOT_A_VALID_YEAR)
     @Max(value = 99, message = CardValidationErrorMessages.IT_IS_NOT_A_VALID_YEAR)
     @ApiModelProperty("Expire year")
     private int expireYear;
@@ -43,7 +43,7 @@ public class Card {
     @ApiModelProperty("Name of the owner of the card")
     private String name;
     @NotNull
-    @Min(value =1, message= CardValidationErrorMessages.IT_IS_NOT_A_VALID_CVC)
+    @Min(value = 1, message = CardValidationErrorMessages.IT_IS_NOT_A_VALID_CVC)
     @Max(value = 999, message = CardValidationErrorMessages.IT_IS_NOT_A_VALID_CVC)
     @ApiModelProperty("Cvc card")
     private int cvc;
@@ -71,6 +71,9 @@ public class Card {
         this.number = number;
     }
 
+    public Card() {
+    }
+
     public int getId() {
         return id;
     }
@@ -78,6 +81,7 @@ public class Card {
     public void setId(int id) {
         this.id = id;
     }
+
     public String getNumber() {
         return number;
     }
@@ -118,10 +122,6 @@ public class Card {
     public void setCvc(int cvc) {
         this.cvc = cvc;
     }
-
-    public Card() {
-    }
-
 
     @Override
     public String toString() {

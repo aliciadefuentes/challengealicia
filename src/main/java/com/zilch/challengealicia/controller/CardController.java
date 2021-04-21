@@ -30,7 +30,6 @@ public class CardController {
 
         Card cardGen = cardService.generateCard(card.getName());
         return ResponseEntity.status(HttpStatus.CREATED).header("ContentType", "application/json").body(cardGen);
-        //return cardGen;
     }
 
     @ApiOperation(value = "Listing all the card in the database")

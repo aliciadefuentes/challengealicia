@@ -19,6 +19,6 @@ class CardServiceImplTest {
     void testGenerateCard() {
         long initSize = cardRepo.count();
         cardService.generateCard("Name test");
-        assertEquals(initSize+1, cardRepo.count());
+        assertEquals(initSize + 1, cardRepo.count());
     }
 }

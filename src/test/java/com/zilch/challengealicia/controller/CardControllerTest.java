@@ -28,11 +28,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @WebMvcTest(CardController.class)
 class CardControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
-
     @MockBean
     CardService cardService;
+    @Autowired
+    private MockMvc mockMvc;
 
     @WithMockUser(roles = "USER")
     @Test

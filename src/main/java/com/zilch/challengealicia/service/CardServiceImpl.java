@@ -27,7 +27,7 @@ public class CardServiceImpl implements CardService {
         return cardRepo.findById(id);
     }
 
-    public Card generateCard(String name) throws IllegalArgumentException, ValidationException  {
+    public Card generateCard(String name) throws IllegalArgumentException, ValidationException {
         Card card = new Card(name);
         return cardRepo.saveAndFlush(card);
     }
